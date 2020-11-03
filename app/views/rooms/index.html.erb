@@ -1,0 +1,31 @@
+<div class="row">
+<div class="col-3">
+</div>
+<div class="col-6">
+
+<p id="notice"><%= notice %></p>
+<div class="card">
+<h1>Sensores Disponibles:</h1>
+<div class="row">
+<div class="col-6">
+<%sensor = Sensor.where(id:1).first%>
+<%= render :partial => "sensors/thumbnail", :locals => { :sensor => sensor }  %>
+</div>
+<div class="col-6">
+<%sensor = Sensor.where(id:2).first%>
+<%= render :partial => "sensors/thumbnail", :locals => { :sensor => sensor }  %>
+</div>
+</div>
+<div class="row">
+<div class="col-6">
+</div>
+<div class="col-6">
+</div>
+</div>
+<%= link_to 'Añadir sensor', new_room_path ,class: ["btn btn-primary"] %>
+</div>
+</div>
+
+<div class="col-3">
+
+</div>
