@@ -4,13 +4,23 @@
 <h4>Sensor Id: <%= sensor.id%></h4>
     <p class="card-text">Sensor humedad y temperatura con 8 protocolos</p>
   </div>
+  <%e =  Log.where(sensor_id:sensor.id).count%>
+  <%if e != 0%>
+    <%r =  Log.where(sensor_id:sensor.id).last%>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Temperatura: 22º</li>
+    <li class="list-group-item">Temperatura: <%=r.temperture%>º</li>
     <li class="list-group-item">Humedad tierra: 30%</li>
     <li class="list-group-item">Humedad aire: 20%</li>
   </ul>
+  <% else %>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">Temperatura: 20º</li>
+    <li class="list-group-item">Humedad tierra: 30%</li>
+    <li class="list-group-item">Humedad aire: 20%</li>
+  </ul>
+  <% end %>
   <div class="card-body">
-    <a href="#" class="card-link">Protocolos</a>
+    <a href="#" class="card-link">Registros<%= Log.where(sensor_id:sensor.id).count%></a>
     <a href="#" class="card-link">Solicitar revision</a>
   </div>
 </div>

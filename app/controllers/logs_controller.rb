@@ -1,12 +1,21 @@
 class LogsController < ApplicationController
   before_action :set_log, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /logs
   # GET /logs.json
   def index
     @logs = Log.all
   end
-
+  def report
+    if params[:token] == 'ere4ereEElp$QQwwwQQasl0029'
+      log = Log.new
+      log.temperture = params[:temp]
+      log.humidity = params[:humidity]
+      log.sensor_id = params[:sensor_id]
+      log.save!
+    end
+  end
   # GET /logs/1
   # GET /logs/1.json
   def show

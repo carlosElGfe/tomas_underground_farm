@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "rooms#index"
-  post 'report_log/:sensor_id', to: "rooms#analize_report" 
+  post 'report_log', to: "logs#report" 
   resources  :rooms
   resources :sensors
   resources :logs
