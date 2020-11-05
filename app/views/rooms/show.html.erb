@@ -1,4 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-8">
+    <p id="notice"><%= notice %></p>
+    <div class="shadow p-3 mb-5 bg-white rounded">        <h1>Sensores Disponibles del container <%= @room.id%></h1>
+</div>
+        <div class="row">
+        <% sens = Sensor.where(room_id:@room.id)%>
+        <%sens.each do |s|%>
+            <div class="col-6" style="margin-top:10px">
+                <%= render :partial => "sensors/thumbnail", :locals => { :sensor => s }  %>
+            </div>
+            <%end%>
+        </div>
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6"></div>
+        </div>
+        <%= link_to 'Añadir sensor', new_room_path ,class: ["btn btn-primary"] %>
+    </div>
+    <div class="col-3">
+    </div>
+</div>

@@ -28,7 +28,7 @@ class SensorsController < ApplicationController
 
     respond_to do |format|
       if @sensor.save
-        format.html { redirect_to @sensor, notice: 'Sensor was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Sensor Creado con exito!' }
         format.json { render :show, status: :created, location: @sensor }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class SensorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sensor_params
-      params.fetch(:sensor, {})
+      params.fetch(:sensor, {}).permit(:room_id)
     end
 end

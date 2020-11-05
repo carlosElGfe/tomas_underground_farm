@@ -1,31 +1,32 @@
 <div class="row">
-<div class="col-3">
-</div>
-<div class="col-6">
+    <div class="col-1"></div>
+    <div class="col-8">
+    <p id="notice"><%= notice %></p>
+    <div class="shadow p-3 mb-5 bg-white rounded">  <h1>Piezas Disponibles dentro del container:</h1></div>
+        <table class="table table-striped">
+        <tr>
+        <th>#</th>
+        <th>Nº de sensores</th>
+        <th>Descripcion</th>
 
-<p id="notice"><%= notice %></p>
-<div class="card">
-<h1>Sensores Disponibles:</h1>
-<div class="row">
-<div class="col-6">
-<%sensor = Sensor.where(id:1).first%>
-<%= render :partial => "sensors/thumbnail", :locals => { :sensor => sensor }  %>
-</div>
-<div class="col-6">
-<%sensor = Sensor.where(id:2).first%>
-<%= render :partial => "sensors/thumbnail", :locals => { :sensor => sensor }  %>
-</div>
-</div>
-<div class="row">
-<div class="col-6">
-</div>
-<div class="col-6">
-</div>
-</div>
-<%= link_to 'Añadir sensor', new_room_path ,class: ["btn btn-primary"] %>
-</div>
-</div>
-
-<div class="col-3">
-
+        <th>Accion</th>
+        </tr>
+        <tbody>
+        <%cont = 1%>
+        <% Room.all.each do |room|%>
+        <tr>
+        <td><%= cont%></td>
+        <%cont+=1%>
+        <td><%=Sensor.where(room_id:room.id).count%></td> 
+        <td><%= room.name%></td>
+        <td><%= link_to "Ver",room_path(room.id),class: ["btn btn-primary"]%></td> 
+        </tr>
+        <%end%>       
+        </tbody>
+        </table>
+    </div>
+    <div class="col-3">
+                <%@sensor = Sensor.new%>
+                <%= render :partial => "sensors/form", :locals => { :sensor => @sensor }  %>
+    </div>
 </div>

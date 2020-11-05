@@ -1,4 +1,11 @@
-<%= form_with(model: sensor, local: true) do |form| %>
+<div class="card" style="width: 20rem; margin-top:10px">
+<div class="card-header"><h4>Crear nuevo sensor </h4></div>
+<%= form_with(model: sensor, local: false) do |form| %>
+<ul>
+  <li style="list-style: none">
+    <% room = Room.all %>
+    <%= form.collection_select :room_id, room.order(:name),:id,:name, include_blank: true %>
+  </li>
   <% if sensor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(sensor.errors.count, "error") %> prohibited this sensor from being saved:</h2>
@@ -15,3 +22,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+  </div>
