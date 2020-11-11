@@ -22,7 +22,7 @@
         <td><%=Sensor.where(room_id:room.id).count%></td> 
         <td><%= room.name%></td>
         <td><%= link_to "Ver",room_path(room.id),class: ["btn btn-primary"]%></td>
-          <td><%= link_to "Eliminar",room_path(room.id),class: ["btn btn-danger"],method: :delete%></td>
+          <td><%= link_to "Eliminar",room_path(room.id),class: ["btn btn-danger"],:data => {:confirm => 'Seguro que desea eliminar sensor?'},method: :delete%></td>
 
         </tr>
         <%end%>       

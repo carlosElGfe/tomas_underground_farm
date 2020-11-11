@@ -14,6 +14,9 @@ class LogsController < ApplicationController
       log.humidity = params[:humidity]
       log.sensor_id = params[:sensor_id]
       log.save!
+      respond_to do |format|
+        format.json { head :no_content }
+      end
     end
   end
   # GET /logs/1

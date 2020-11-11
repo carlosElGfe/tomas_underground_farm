@@ -54,9 +54,10 @@ class SensorsController < ApplicationController
   # DELETE /sensors/1
   # DELETE /sensors/1.json
   def destroy
+    idd = @sensor.room_id
     @sensor.destroy
     respond_to do |format|
-      format.html { redirect_to sensors_url, notice: 'Sensor was successfully destroyed.' }
+      format.html { redirect_to room_path(idd), notice: 'Sensor destruido con exito' }
       format.json { head :no_content }
     end
   end
