@@ -31,10 +31,8 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
-        format.json { render :show, status: :created, location: @room }
+        format.html { redirect_to root_path, notice: 'Reefer creado con exito' }
       else
-        format.html { render :new }
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
@@ -57,6 +55,10 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
+    sens = Sensor.where(room_id:@room.id)
+    sens.each do |sensor|
+      sensor.destroy!
+    end
     @room.destroy
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
@@ -72,6 +74,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.fetch(:room, {})
+      params.fetch(:room, {}).permit(:name)
     end
 end

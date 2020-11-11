@@ -4,8 +4,11 @@
 <ul>
   <li style="list-style: none">
     <% room = Room.all %>
+    <%= form.label(:room_id, "Reefer") %>
+
     <%= form.collection_select :room_id, room.order(:name),:id,:name, include_blank: true %>
   </li>
+</ul>
   <% if sensor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(sensor.errors.count, "error") %> prohibited this sensor from being saved:</h2>

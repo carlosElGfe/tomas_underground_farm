@@ -10,6 +10,8 @@
         <th>Descripcion</th>
 
         <th>Accion</th>
+          <th>Accion #2</th>
+
         </tr>
         <tbody>
         <%cont = 1%>
@@ -19,7 +21,9 @@
         <%cont+=1%>
         <td><%=Sensor.where(room_id:room.id).count%></td> 
         <td><%= room.name%></td>
-        <td><%= link_to "Ver",room_path(room.id),class: ["btn btn-primary"]%></td> 
+        <td><%= link_to "Ver",room_path(room.id),class: ["btn btn-primary"]%></td>
+          <td><%= link_to "Eliminar",room_path(room.id),class: ["btn btn-danger"],method: :delete%></td>
+
         </tr>
         <%end%>       
         </tbody>
@@ -28,5 +32,8 @@
     <div class="col-3">
                 <%@sensor = Sensor.new%>
                 <%= render :partial => "sensors/form", :locals => { :sensor => @sensor }  %>
+
+      <%@room = Room.new%>
+      <%= render :partial => "rooms/form", :locals => { :room => @room }  %>
     </div>
 </div>
