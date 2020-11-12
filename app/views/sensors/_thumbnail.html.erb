@@ -20,8 +20,7 @@
   </ul>
   <% end %>
   <div class="card-body">
-    <a href="#" class="card-link">Registros<%= Log.where(sensor_id:sensor.id).count%></a>
-    <a href="#" class="card-link">Solicitar revision</a>
+    <a href="#" class="card-link">Registros <%= Log.where(sensor_id:sensor.id).count%></a>
     <%= link_to "Eliminar Sensor", sensor_path(sensor.id),class: ["btn","btn-danger"],method: :delete,:data => {:confirm => 'Seguro que desea eliminar sensor?'} %>
   </div>
 </div>
